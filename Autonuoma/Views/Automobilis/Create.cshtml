@@ -1,0 +1,130 @@
+﻿@model Org.Ktu.Isk.P175B602.Autonuoma.ViewModels.AutoEditVM
+
+@{
+	ViewData["title"] = "Automobilio sukūrimas";
+}
+
+<div class="main-content-header container-fluid d-flex d-row justify-content-between align-items-center">
+	<span class="title">@ViewData["title"]</span>
+	<span class="actions">
+		<a href="@Url.Action("Index")" class="link-primary"><i class="fa-solid fa-angles-left"></i> Atgal į sarašą</a>
+	</span>
+</div>
+
+<div class="container-fluid d-flex justify-content-center">
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+	<fieldset class="border rounded shadow p-2">
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.ValstybinisNr, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Auto.ValstybinisNr, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Auto.ValstybinisNr, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.PagaminimoData, new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Auto.PagaminimoData, "{0:yyyy-MM-dd}", new { @class = "form-control date-picker"})
+			@Html.ValidationMessageFor(m => m.Auto.PagaminimoData, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.Rida, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Auto.Rida, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Auto.Rida, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.Radijas, new { @class = "control-label" })
+			<div class="checkbox">
+				@Html.EditorFor(m => m.Auto.Radijas)
+				@Html.ValidationMessageFor(m => m.Auto.Radijas, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.Grotuvas, new { @class = "control-label" })
+			<div class="checkbox">
+				@Html.EditorFor(m => m.Auto.Grotuvas)
+				@Html.ValidationMessageFor(m => m.Auto.Grotuvas, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.Kondicionierius, new { @class = "control-label" })
+			<div class="checkbox">
+				@Html.EditorFor(m => m.Auto.Kondicionierius)
+				@Html.ValidationMessageFor(m => m.Auto.Kondicionierius, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.VietuSkaicius, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Auto.VietuSkaicius, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Auto.VietuSkaicius, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.RegistravimoData, new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Auto.RegistravimoData, "{0:yyyy-MM-dd}", new { @class = "form-control date-picker"})
+			@Html.ValidationMessageFor(m => m.Auto.RegistravimoData, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.Verte, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Auto.Verte, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Auto.Verte, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.PavaruDeze, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Auto.PavaruDeze, Model.Lists.PavaruDezes, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Auto.PavaruDeze, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.DegaluTipas, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Auto.DegaluTipas, Model.Lists.DegaluTipai, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Auto.DegaluTipas, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.Kebulas, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Auto.Kebulas, Model.Lists.Kebulai, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Auto.Kebulas, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.BagazoDydis, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Auto.BagazoDydis, Model.Lists.Bagazai, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Auto.BagazoDydis, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.Busena, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Auto.Busena, Model.Lists.Busenos, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Auto.Busena, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Auto.FkModelis, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Auto.FkModelis, Model.Lists.Modeliai, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Auto.FkModelis, "", new { @class = "text-danger" })
+		</div>
+	</fieldset>
+
+	<div class="container-fluid d-flex d-row justify-content-end">
+		<button name="save" value="1" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Išsaugoti</button>
+	</div>
+}
+</div>
+
+<div class="main-content-footer container-fluid d-flex d-row justify-content-between align-items-center">
+	<span class="title"></span>
+	<span class="actions">
+		<a href="@Url.Action("Index")" class="link-primary"><i class="fa-solid fa-angles-left"></i> Atgal į sarašą</a>
+	</span>
+</div>

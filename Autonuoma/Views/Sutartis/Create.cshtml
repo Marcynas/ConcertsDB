@@ -1,0 +1,197 @@
+﻿@model Org.Ktu.Isk.P175B602.Autonuoma.ViewModels.SutartisEditVM
+@{
+	ViewData["title"] = "Sutarties sukūrimas";
+}
+
+<div class="main-content-header container-fluid d-flex d-row justify-content-between align-items-center">
+	<span class="title">@ViewData["title"]</span>
+	<span class="actions">
+		<a href="@Url.Action("Index")" class="link-primary"><i class="fa-solid fa-angles-left"></i> Atgal į sarašą</a>
+	</span>
+</div>
+
+<div class="container-fluid d-flex justify-content-center">
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+	@* add hidden form fields for non-visible properties, otherwise they will get lost in code that handles button presses *@
+	@Html.HiddenFor(m => m.Sutartis.Nr)
+
+	<fieldset class="border rounded shadow p-2">
+		<legend class="text-center">Sutartis</legend>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.SutartiesData, new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Sutartis.SutartiesData, "{0:yyyy-MM-dd}", new { @class = "form-control date-picker"})
+			@Html.ValidationMessageFor(m => m.Sutartis.SutartiesData, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.FkKlientas, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Sutartis.FkKlientas, Model.Lists.Klientai, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Sutartis.FkKlientas, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.FkDarbuotojas, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Sutartis.FkDarbuotojas, Model.Lists.Darbuotojai, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Sutartis.FkDarbuotojas, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.NuomosDataLaikas, new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Sutartis.NuomosDataLaikas, "{0:yyyy-MM-dd hh:mm}", new { @class = "form-control datetime-picker" })
+			@Html.ValidationMessageFor(m => m.Sutartis.NuomosDataLaikas, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.PlanuojamaGrDataLaikas, new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Sutartis.PlanuojamaGrDataLaikas, "{0:yyyy-MM-dd hh:mm}", new { @class = "form-control datetime-picker" })
+			@Html.ValidationMessageFor(m => m.Sutartis.PlanuojamaGrDataLaikas, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.FaktineGrDataLaikas, new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Sutartis.FaktineGrDataLaikas, "{0:yyyy-MM-dd hh:mm}", new { @class = "form-control datetime-picker" })
+			@Html.ValidationMessageFor(m => m.Sutartis.FaktineGrDataLaikas, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.Busena, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Sutartis.Busena, Model.Lists.Busenos, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Sutartis.Busena, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.Kaina, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Sutartis.Kaina, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Sutartis.Kaina, "", new { @class = "text-danger" })
+		</div>
+	</fieldset>
+
+	<fieldset class="border rounded shadow p-2">
+		<legend class="text-center">Automobilis</legend>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.FkAutomobilis, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Sutartis.FkAutomobilis, Model.Lists.Automobiliai, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Sutartis.FkAutomobilis, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.FkPaemimoVieta, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Sutartis.FkPaemimoVieta, Model.Lists.Vietos, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Sutartis.FkPaemimoVieta, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.PradineRida, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Sutartis.PradineRida, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Sutartis.PradineRida, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.DegaluKiekisPaimant, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Sutartis.DegaluKiekisPaimant, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Sutartis.DegaluKiekisPaimant, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.FkGrazinimoVieta, new { @class = "control-label" })
+			@Html.DropDownListFor(m => m.Sutartis.FkGrazinimoVieta, Model.Lists.Vietos, "--------------", new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Sutartis.FkGrazinimoVieta, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.GalineRida, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Sutartis.GalineRida, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Sutartis.GalineRida, "", new { @class = "text-danger" })
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Sutartis.DegaluKiekisGrazinant, new { @class = "control-label" })
+			@Html.EditorFor(m => m.Sutartis.DegaluKiekisGrazinant, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(m => m.Sutartis.DegaluKiekisGrazinant, "", new { @class = "text-danger" })
+		</div>
+	</fieldset>
+
+	<fieldset class="border rounded shadow p-2">
+		<div class="container-fluid d-flex d-row justify-content-between align-items-center">
+			<span></span>
+			<legend style="width: unset; margin-bottom: 0px;">Papildomos paslaugos</legend>
+			<button
+				name="add"
+				value="1"
+				formnovalidate @*ASP.NET Core magic attribute to prevent client side validation when submit button is clicked*@
+				formaction="@Url.Action()#listEnd"
+				class="btn btn-info"
+				style="white-space: nowrap;"
+			><i class="fa-solid fa-plus"></i> Pridėti</button>
+		</div>
+
+		<table class="table table-striped table-hover w-100">
+			<thead>
+				<tr>
+					<th>Paslauga</th>
+					<th>Kaina</th>
+					<th>Kiekis</th>
+					<th style="width: 1px;"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@for( var i = 0; i < Model.UzsakytosPaslaugos.Count; i++ ) {
+				<tr>
+					<td>
+						@* add hidden form fields for non-visible properties, otherwise they will get lost in code that handles button presses *@
+						@Html.HiddenFor(m => m.UzsakytosPaslaugos[i].InListId)
+
+						@Html.DropDownListFor(
+							m => m.UzsakytosPaslaugos[i].Paslauga, 
+							Model.Lists.Paslaugos, 
+							"--------------", 
+							new { @class = "form-control" }
+						)
+						@Html.ValidationMessageFor(m => m.UzsakytosPaslaugos[i].Paslauga, "", new { @class = "text-danger" })
+					</td>
+					<td>
+						@Html.EditorFor(m => m.UzsakytosPaslaugos[i].Kaina, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.UzsakytosPaslaugos[i].Kaina, "", new { @class = "text-danger" })
+					</td>
+					<td>
+						@Html.EditorFor(m => m.UzsakytosPaslaugos[i].Kiekis, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.UzsakytosPaslaugos[i].Kiekis, "", new { @class = "text-danger" })
+					</td>
+					<td>
+						<button
+							name="remove"
+							value="@Model.UzsakytosPaslaugos[i].InListId"
+							formnovalidate @*ASP.NET Core magic attribute to prevent client side validation when submit button is clicked*@
+							formaction="@Url.Action()#listEnd"
+							class="btn btn-danger"
+							style="white-space: nowrap;"
+						><i class="fa-solid fa-trash"></i> Šalinti</button>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+
+		@* this is used as a marker to automatically scroll down to the end of items list when returning from button presses *@
+		<span id="listEnd"></span>
+	</fieldset>
+
+	<div class="container-fluid d-flex d-row justify-content-end">
+		<button name="save" value="1" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Išsaugoti</button>
+	</div>
+}
+</div>
+
+<div class="main-content-footer container-fluid d-flex d-row justify-content-between align-items-center">
+	<span class="title"></span>
+	<span class="actions">
+		<a href="@Url.Action("Index")" class="link-primary"><i class="fa-solid fa-angles-left"></i> Atgal į sarašą</a>
+	</span>
+</div>

@@ -1,0 +1,61 @@
+﻿@model Org.Ktu.Isk.P175B602.Autonuoma.ViewModels.DarbuotojasKListVM
+@{
+	ViewData["title"] = "Darbuotojo šalinimas";
+}
+
+<div class="main-content-header container-fluid d-flex d-row justify-content-between align-items-center">
+	<span class="title">@ViewData["title"]</span>
+	<span class="actions">
+		<a href="@Url.Action("Index")" class="link-primary"><i class="fa-solid fa-angles-left"></i> Atgal į sarašą</a>
+	</span>
+</div>
+
+<div class="container-fluid d-flex justify-content-center">
+@using (Html.BeginForm()) 
+{
+	@Html.AntiForgeryToken()
+
+	<fieldset class="border rounded shadow p-2">
+		<legend class="text-center">Ar tikrai norite šalinti šį modelį?</legend>
+
+		<dl>
+			<dt>@Html.DisplayNameFor(m => m.Id)</dt>
+			<dd>@Html.DisplayFor(m => m.Id)</dd>
+			
+			<dt>@Html.DisplayNameFor(m => m.FkASMUOid)</dt>
+			<dd>@Html.DisplayFor(m => m.FkASMUOid)</dd>
+
+			<dt>@Html.DisplayNameFor(m => m.DirbaNuo)</dt>
+			<dd>@Html.DisplayFor(m => m.DirbaNuo)</dd>
+
+			<dt>@Html.DisplayNameFor(m => m.DirbaIki)</dt>
+			<dd>@Html.DisplayFor(m => m.DirbaIki)</dd>
+		</dl>
+
+		@if( ViewData["deletionNotPermitted"] != null )
+		{
+			<div class="alert alert-warning text-center">
+				<i class="fa-solid fa-circle-exclamation"></i> Šios modelio esybės trinti negalima, nes 
+				ji turi ryšių į priklausomas esybes.
+			</div>
+		}
+		else
+		{
+			<div class="container-fluid d-flex d-row justify-content-end">
+				<button
+					formaction="@Url.Action("DeleteConfirm", new {id = Model.Id})"
+					class="btn btn-danger"
+					style="white-space: nowrap;"
+				><i class="fa-solid fa-trash"></i> Šalinti</button>
+			</div>			
+		}
+	</fieldset>
+}
+</div>
+
+<div class="main-content-footer container-fluid d-flex d-row justify-content-between align-items-center">
+	<span class="title"></span>
+	<span class="actions">
+		<a href="@Url.Action("Index")" class="link-primary"><i class="fa-solid fa-angles-left"></i> Atgal į sarašą</a>
+	</span>
+</div>

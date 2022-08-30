@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Org.Ktu.Isk.P175B602.Autonuoma.ViewModels.SutartisListVM>
+@{
+	ViewData["title"] = "Sutartys";
+}
+
+<div class="main-content-header container-fluid d-flex d-row justify-content-between align-items-center p-2">
+	<span class="title">@ViewData["title"]</span>
+	<span class="actions">
+		<a href="@Url.Action("Create")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Sukurti naują</a>
+	</span>
+</div>
+
+<div class="d-flex justify-content-center">
+	<table class="entitylist table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(m => m.Nr)
+				</th>
+				<th>
+					@Html.DisplayNameFor(m => m.Data)
+				</th>
+				<th>
+					@Html.DisplayNameFor(m => m.Darbuotojas)
+				</th>
+				<th>
+					@Html.DisplayNameFor(m => m.Nuomininkas)
+				</th>
+				<th>
+					@Html.DisplayNameFor(m => m.Busena)
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model) {
+			<tr>
+				<td>
+					@Html.DisplayFor(m => item.Nr)
+				</td>
+				<td>
+					@Html.DisplayFor(m => item.Data)
+				</td>
+				<td>
+					@Html.DisplayFor(m => item.Darbuotojas)
+				</td>
+				<td>
+					@Html.DisplayFor(m => item.Nuomininkas)
+				</td>
+				<td>
+					@Html.DisplayFor(m => item.Busena)
+				</td>
+				<td>
+					<a href="@Url.Action("Edit", new { id = item.Nr })" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Redaguoti</a>
+					<a href="@Url.Action("Delete", new { id = item.Nr })" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Šalinti</a>					
+				</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+</div>

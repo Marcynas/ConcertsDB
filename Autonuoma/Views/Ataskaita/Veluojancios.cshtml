@@ -1,0 +1,61 @@
+﻿@model Org.Ktu.Isk.P175B602.Autonuoma.ViewModels.LateContractsReport.Report
+@{
+	ViewData["title"] = "Vėluojančių sutarčių ataskaita";
+}
+
+<div class="main-content-header container-fluid">
+	<span class="title">@ViewData["title"]</span>
+</div>
+
+<div class="container-fluid d-flex justify-content-center">
+@using (Html.BeginForm())
+{
+	<div class="form-group container-fluid d-flex justify-content-between align-items-center p-0">
+		<div class="form-group container-fluid d-flex justify-content-left align-items-center m-0 p-0">
+			<label>Sutartys nuo:&nbsp;</label>
+			@Html.TextBoxFor(m => m.DateFrom, "{0:yyyy-MM-dd}", new { @class = "date-picker" })
+
+			<span style="width:3ch;"></span>
+
+			<label>Sutartys iki:&nbsp;</label>
+			@Html.TextBoxFor(m => m.DateTo, "{0:yyyy-MM-dd}", new { @class = "date-picker" })
+		</div>
+
+		<button
+			class="btn btn-success"
+			style="white-space: nowrap;"
+		><i class="fa-solid fa-filter"></i> Atrinkti</button>
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+			<tr style="background-color:lightblue">
+				<th>@Html.DisplayNameFor(m => m.Sutartys[0].Nr)</th>
+				<th>@Html.DisplayNameFor(m => m.Sutartys[0].SutartiesData)</th>
+				<th>@Html.DisplayNameFor(m => m.Sutartys[0].Klientas)</th>
+				<th>@Html.DisplayNameFor(m => m.Sutartys[0].PlanuojamaGrData)</th>
+				<th>@Html.DisplayNameFor(m => m.Sutartys[0].FaktineGrData)</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if( Model.Sutartys.Count == 0 )
+			{
+			<tr>
+				<td colspan="5" align="center"><b style="color:red;">Nurodytame laikotarpyje nebuvo vėluojančių gražinti automobilį sutarčių</b></td>
+			</tr>
+			}
+
+			@foreach( var item in Model.Sutartys )
+			{
+			<tr>
+				<td>#@Html.DisplayFor(m => item.Nr)</td>
+				<td>@Html.DisplayFor(m => item.SutartiesData)</td>
+				<td>@Html.DisplayFor(m => item.Klientas)</td>
+				<td>@Html.DisplayFor(m => item.PlanuojamaGrData)</td>
+				<td>@Html.DisplayFor(m => item.FaktineGrData)</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+}
+</div>
