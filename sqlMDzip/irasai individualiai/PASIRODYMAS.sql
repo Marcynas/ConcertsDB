@@ -1,0 +1,59 @@
+-- MariaDB dump 10.19  Distrib 10.5.12-MariaDB, for Linux (x86_64)
+--
+-- Host: mysql.hostinger.ro    Database: u574849695_20
+-- ------------------------------------------------------
+-- Server version	10.5.12-MariaDB-cll-lve
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `PASIRODYMAS`
+--
+
+DROP TABLE IF EXISTS `PASIRODYMAS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PASIRODYMAS` (
+  `id` int(11) NOT NULL,
+  `pavadinimas` varchar(255) DEFAULT NULL,
+  `kaina` float DEFAULT NULL,
+  `sumoketa` float DEFAULT NULL,
+  `fk_KONCERTASid` int(11) NOT NULL,
+  `fk_ATLIKEJASid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `vyksta` (`fk_KONCERTASid`),
+  KEY `atlieka` (`fk_ATLIKEJASid`),
+  CONSTRAINT `atlieka` FOREIGN KEY (`fk_ATLIKEJASid`) REFERENCES `ATLIKEJAS` (`id`),
+  CONSTRAINT `vyksta` FOREIGN KEY (`fk_KONCERTASid`) REFERENCES `KONCERTAS` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PASIRODYMAS`
+--
+
+LOCK TABLES `PASIRODYMAS` WRITE;
+/*!40000 ALTER TABLE `PASIRODYMAS` DISABLE KEYS */;
+INSERT INTO `PASIRODYMAS` VALUES (1,'est',387,383,26,9),(4,'sequi',226,422,37,15),(6,'voluptas',323,0,13,5),(9,'voluptas',357,363,35,14),(11,'quia',259,0,31,13),(13,'incidunt',483,306,44,17),(18,'fugit',458,0,3,1),(19,'hic',100,0,27,10),(20,'consequatur',236,377,24,8),(22,'facilis',362,488,12,4),(29,'rem',355,489,7,3),(30,'a',295,578,49,20),(31,'odio',178,0,30,12),(34,'quibusdam',409,448,16,6),(35,'eum',199,405,48,19),(37,'qui',404,0,45,18),(38,'accusantium',316,0,42,16),(46,'et',241,0,4,2),(47,'et',198,0,29,11),(48,'doloribus',332,551,18,7);
+/*!40000 ALTER TABLE `PASIRODYMAS` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-03-02 13:04:18

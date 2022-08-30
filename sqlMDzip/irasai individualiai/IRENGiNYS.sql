@@ -1,0 +1,55 @@
+-- MariaDB dump 10.19  Distrib 10.5.12-MariaDB, for Linux (x86_64)
+--
+-- Host: mysql.hostinger.ro    Database: u574849695_20
+-- ------------------------------------------------------
+-- Server version	10.5.12-MariaDB-cll-lve
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `IRENGiNYS`
+--
+
+DROP TABLE IF EXISTS `IRENGiNYS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `IRENGiNYS` (
+  `id` int(11) NOT NULL,
+  `pavadinimas` varchar(255) DEFAULT NULL,
+  `turimas_kiekis` float DEFAULT NULL,
+  `fk_IRENGINIO_TIPASid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `priklauso` (`fk_IRENGINIO_TIPASid`),
+  CONSTRAINT `priklauso` FOREIGN KEY (`fk_IRENGINIO_TIPASid`) REFERENCES `IRENGINIO_TIPAS` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `IRENGiNYS`
+--
+
+LOCK TABLES `IRENGiNYS` WRITE;
+/*!40000 ALTER TABLE `IRENGiNYS` DISABLE KEYS */;
+INSERT INTO `IRENGiNYS` VALUES (2,'14mc8tl',2,15),(3,'14zs0ee',3,31),(5,'39uo5yn',2,12),(6,'26pv9pq',1,48),(9,'32co9na',9,30),(10,'03pk2dz',1,21),(12,'22wc5mh',10,37),(13,'97rk1gm',8,14),(15,'33bq8lr',2,22),(16,'21gb0wg',10,26),(21,'27ml7hh',4,19),(22,'66qn4ec',2,2),(23,'96px4xo',6,16),(29,'38ov2vw',6,41),(30,'22qr5ab',3,24),(31,'83vv3ti',10,47),(43,'41kb4dt',1,50),(44,'41uh2mf',5,25),(46,'34xk6tp',8,7),(49,'15pm4pr',5,13);
+/*!40000 ALTER TABLE `IRENGiNYS` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-03-02 13:09:32
